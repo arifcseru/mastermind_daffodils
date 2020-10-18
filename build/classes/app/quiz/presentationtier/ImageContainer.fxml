@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.quiz.presentationtier.ImageContainerController">
+   <children>
+      <HBox prefHeight="179.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="counterLabel" prefHeight="17.0" prefWidth="375.0" text="Testing Image View" textFill="#306f32">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <ImageView fitHeight="219.0" fitWidth="322.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <Region prefHeight="200.0" prefWidth="200.0" />
+      <HBox prefHeight="100.0" prefWidth="200.0" />
+   </children>
+</VBox>

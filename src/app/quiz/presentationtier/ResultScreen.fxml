@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+/*-
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.-
+ *-
+ * Copyright (c) 2013 Oracle and/or its affiliates. All rights reserved.-
+ *-
+ * The contents of this file are subject to the terms of either the GNU-
+ * General Public License Version 2 only ("GPL") or the Common Development-
+ * and Distribution License("CDDL") (collectively, the "License"). You-
+ * may not use this file except in compliance with the License. You can-
+ * obtain a copy of the License at-
+ * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html-
+ * or packager/legal/LICENSE.txt.  See the License for the specific-
+ * language governing permissions and limitations under the License.-
+ *-
+ * When distributing the software, include this License Header Notice in each-
+ * file and include the License file at packager/legal/LICENSE.txt.-
+ *-
+ * GPL Classpath Exception:-
+ * Oracle designates this particular file as subject to the "Classpath"-
+ * exception as provided by Oracle in the GPL Version 2 section of the License-
+ * file that accompanied this code.-
+ *-
+ * Modifications:-
+ * If applicable, add the following below the License Header, with the fields-
+ * enclosed by brackets [] replaced by your own identifying information:-
+ * "Portions Copyright [year] [name of copyright owner]"-
+ *-
+ * Contributor(s):-
+ * If you wish your version of this file to be governed by only the CDDL or-
+ * only the GPL Version 2, indicate your decision by adding "[Contributor]-
+ * elects to include this software in this distribution under the [CDDL or GPL-
+ * Version 2] license."  If you don't indicate a single choice of license, a-
+ * recipient has the option to distribute your version of this file under-
+ * either the CDDL, the GPL Version 2 or to extend the choice of license to-
+ * its licensees as provided above.  However, if you add GPL Version 2 code-
+ * and therefore, elected the GPL Version 2 license, then the option applies-
+ * only if the new code is made subject to such option by the copyright-
+ * holder.-
+ */ -
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="495.0" prefWidth="1062.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.quiz.presentationtier.ResultScreenController">
+  <children>
+      <VBox fx:id="resultScreenVBox" alignment="CENTER" layoutX="419.0" layoutY="215.0" style="-fx-border-color: white;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="419.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="215.0">
+         <children>
+        <Label fx:id="quizCompleteMessage" layoutX="368.0" layoutY="198.0" prefHeight="70.0" prefWidth="627.0" style="-fx-background-color: skyblue; -fx-border-color: white;" text="Quiz Successfully Completed " textFill="#148014">
+          <font>
+            <Font size="48.0" />
+          </font>
+               <opaqueInsets>
+                  <Insets bottom="5.0" top="5.0" />
+               </opaqueInsets>
+        </Label>
+            <Label fx:id="resultLabel" style="-fx-background-color: skyblue;" text="Label">
+               <font>
+                  <Font size="40.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets bottom="5.0" top="5.0" />
+               </opaqueInsets>
+            </Label>
+        <Button layoutX="321.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToScreen1" prefHeight="67.0" prefWidth="390.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="Home" textFill="#25720b">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting diffuseConstant="1.23" specularConstant="0.58" specularExponent="20.93" surfaceScale="5.45">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#fcf40e" />
+                     </light>
+                  </Lighting>
+               </effect>
+               <opaqueInsets>
+                  <Insets bottom="5.0" top="5.0" />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="loadRoundQuestionButton" layoutX="637.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadQuestionAction" prefHeight="65.0" prefWidth="391.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="Select Round Question" textFill="#34781b">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting diffuseConstant="1.23" specularConstant="0.58" specularExponent="20.93" surfaceScale="5.45">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#fcf40e" />
+                     </light>
+                  </Lighting>
+               </effect>
+               <opaqueInsets>
+                  <Insets bottom="5.0" top="5.0" />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </VBox>
+  </children>
+</AnchorPane>

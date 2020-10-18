@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#mouseEventExit" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.quiz.presentationtier.WrongAnswerController">
+   <children>
+      <Label layoutX="168.0" layoutY="176.0" prefHeight="17.0" prefWidth="320.0" text="Wrong Answer" textFill="#cd2917">
+         <font>
+            <Font size="48.0" />
+         </font></Label>
+   </children>
+</AnchorPane>
