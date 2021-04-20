@@ -51,10 +51,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,6 +81,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
@@ -88,7 +94,9 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
 
     Boolean fileEnabled = false;
     File questionFile = null;
-    Timer timer = new Timer(5000, (ActionListener) this);
+    Timer timer = new Timer(1000, (ActionListener) this);
+
+    private java.util.Timer timerTest = new java.util.Timer();
     String correctAnswerAudio = "mediaFiles/settings/correctanswer.wav";
     String wrongAnswerAudio = "mediaFiles/settings/openingwrong.wav";
     String quizSession_continuous = "mediaFiles/settings/quizSession_continuous.wav";
@@ -105,6 +113,8 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
     private Button optionC_btn;
     @FXML
     private Button optionD_btn;
+    @FXML
+    private Button counter_btn;
     @FXML
     private Label questionLabel;
     private static String correctOption = "";
@@ -167,7 +177,7 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
         quizScreenVBox.setMaxSize(bounds.getWidth(), bounds.getHeight());
-        
+
         quizScreenVBox.setLayoutX((bounds.getMaxX() / 2 - quizScreenVBox.getWidth() / 2));
         quizScreenVBox.setLayoutY((bounds.getMaxY() / 2 - quizScreenVBox.getHeight() / 2));
 
@@ -355,11 +365,17 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
             optionB_btn.setText("B:     " + questionTO.getOptionB());
             optionC_btn.setText("C:     " + questionTO.getOptionC());
             optionD_btn.setText("D:     " + questionTO.getOptionD());
-
+            counter_btn.setText("0");
             // System.out.println(questionType);
             correctOption = questionTO.getCorrectOption();
             ScreensFramework.correctAnswer = correctOption;
             nextQuestionTypeAction();
+
+            System.out.println("Going to reset.");
+            interval = 5;
+            timerTest.cancel();
+            timerTest = new java.util.Timer();
+            setTimer();
         }
     }
 
@@ -380,6 +396,7 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
             optionB_btn.setText("B:     " + questionTO.getOptionB());
             optionC_btn.setText("C:     " + questionTO.getOptionC());
             optionD_btn.setText("D:     " + questionTO.getOptionD());
+            counter_btn.setText("0");
             // System.out.println(questionType);
             correctOption = questionTO.getCorrectOption();
             ScreensFramework.correctAnswer = correctOption;
@@ -475,10 +492,28 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
         optionD_btn.setVisible(false);
 
     }
+    public static int interval = 5;
+
+    public void setTimer() {
+        timerTest.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                if (interval > 0) {
+                    Platform.runLater(() -> counter_btn.setText("" + interval));
+                    System.out.println(interval);
+                    interval--;
+                } else {
+                    commonQuizAction("Z");
+                    // timerTest.cancel();
+                }
+            }
+        }, 1000, 1000);
+    }
 
     public void commonQuizAction(String answer) {
+        // counter_btn.setText("0");
         Boolean correct = false;
         timer.stop();
+        timerTest.cancel();
         if (correctOption.equalsIgnoreCase(answer)) {
             correct = true;
             commonPlayAction(correctAnswerAudio);
@@ -487,6 +522,9 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
             ScreensFramework.correctAnswers++;
         } else {
             commonPlayAction(wrongAnswerAudio);
+            if (answer.equalsIgnoreCase("z")) {
+                // wrongAnswerLabel.setText("Timeout!");
+            }
             wrongAnswerLabel.setVisible(true);
             results.put(ScreensFramework.currentQuestion, false);
         }
@@ -736,8 +774,10 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
             }
             ScreensFramework.questions = QuizAppUtils.getQuestions(questionFile);
             myController.setScreen(ScreensFramework.quizScreen);
+
         } catch (IOException ex) {
-            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeScreenController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -779,6 +819,17 @@ public class QuizScreenController implements ActionListener, Initializable, Cont
             ScreensFramework.currentQuestion = 0;
             timer.stop();
             myController.setScreen(ScreensFramework.homeScreen);
+        }
+
+    }
+
+    @FXML
+    private void loadSettingsAction(ActionEvent event) {
+        Boolean result = AlertBoxController.confirmExit("Alert Box", "Do you want stop quiz?");
+        if (result) {
+            ScreensFramework.currentQuestion = 0;
+            timer.stop();
+            myController.setScreen(ScreensFramework.settingsScreen);
         }
 
     }

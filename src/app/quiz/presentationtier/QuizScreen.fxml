@@ -42,6 +42,16 @@
  */ -
 -->
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -64,304 +74,346 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="quizScreenVBox" onKeyTyped="#keyboardEvent" prefHeight="810.0" prefWidth="1290.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.quiz.presentationtier.QuizScreenController">
-            <stylesheets>
-              <URL value="@quizApplicationCommonDesign.css" />
-          </stylesheets>
-          <children>
-      <MediaView fx:id="mediaView" fitHeight="20.0" fitWidth="20.0" />
-      <Region prefHeight="59.0" prefWidth="1290.0" />
-      <HBox prefHeight="62.0" prefWidth="1290.0">
-         <children>
-             <ImageView fx:id="quizScreenImageView" fitHeight="123.0" fitWidth="299.0" pickOnBounds="true" preserveRatio="true">
-                 <image>
-               <Image url="data/images/quiz-logo-small.gif" />
-           </image>
+<VBox fx:id="quizScreenVBox" onKeyTyped="#keyboardEvent" prefHeight="810.0" prefWidth="1290.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.quiz.presentationtier.QuizScreenController">
+    <stylesheets>
+        <URL value="@quizApplicationCommonDesign.css" />
+    </stylesheets>
+    <children>
+        <MediaView fx:id="mediaView" fitHeight="20.0" fitWidth="20.0" />
+        <Region prefHeight="59.0" prefWidth="1290.0" />
+        <HBox prefHeight="62.0" prefWidth="1290.0">
+            <children>
+                <ImageView fx:id="quizScreenImageView" fitHeight="123.0" fitWidth="299.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="data/images/quiz-logo-small.gif" />
+                    </image>
                  
-                         </ImageView>
-            <Region prefHeight="123.0" prefWidth="132.0" />
-            <ImageView fx:id="quizTypeImageView" fitHeight="123.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="data/images/general_quiz.png" />
-               </image>
-            </ImageView>
-            <Region prefHeight="123.0" prefWidth="111.0" />
-            <Label fx:id="quizRoundNameLabel" prefHeight="123.0" prefWidth="511.0" textFill="#a2f525">
-               <font>
-                  <Font name="Vrinda Bold" size="46.0" />
-               </font>
-            </Label>
-            <Region layoutX="147.0" layoutY="-58.0" prefHeight="123.0" prefWidth="176.0" HBox.hgrow="ALWAYS" />
-            <GridPane hgap="5.0" vgap="5.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Button cancelButton="true" lineSpacing="1.0" mnemonicParsing="false" onAction="#exitNowAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Exit" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <cursor>
+                </ImageView>
+                <Region prefHeight="123.0" prefWidth="132.0" />
+                <ImageView fx:id="quizTypeImageView" fitHeight="123.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="data/images/general_quiz.png" />
+                    </image>
+                </ImageView>
+                <Region prefHeight="123.0" prefWidth="111.0" />
+                <Label fx:id="quizRoundNameLabel" prefHeight="123.0" prefWidth="511.0" textFill="#a2f525">
+                    <font>
+                        <Font name="Vrinda Bold" size="46.0" />
+                    </font>
+                </Label>
+                <Region layoutX="147.0" layoutY="-58.0" prefHeight="123.0" prefWidth="176.0" HBox.hgrow="ALWAYS" />
+                <GridPane hgap="5.0" vgap="5.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        
+                        <Button defaultButton="true" lineSpacing="1.0" mnemonicParsing="false" onAction="#goHomScreenAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Home" textAlignment="JUSTIFY" wrapText="true">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
+                                    <bumpInput>
+                                        <Shadow />
+                                    </bumpInput>
+                                    <light>
+                                        <Light.Distant color="#f4fc0f" />
+                                    </light>
+                                </Lighting>
+                            </effect>
+                        </Button>
+                       <Button lineSpacing="1.0" mnemonicParsing="false" onAction="#editQuestionAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Edit" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
+                                    <bumpInput>
+                                        <Shadow />
+                                    </bumpInput>
+                                    <light>
+                                        <Light.Distant color="#f4fc0f" />
+                                    </light>
+                                </Lighting>
+                            </effect>
+                        </Button>
+                        <Button layoutX="1032.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadQuestionAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Load" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="2">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
+                                    <bumpInput>
+                                        <Shadow />
+                                    </bumpInput>
+                                    <light>
+                                        <Light.Distant color="#f4fc0f" />
+                                    </light>
+                                </Lighting>
+                            </effect>
+                        </Button>
+                        <Button layoutX="1032.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadSettingsAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Settings" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="3">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
+                                    <bumpInput>
+                                        <Shadow />
+                                    </bumpInput>
+                                    <light>
+                                        <Light.Distant color="#f4fc0f" />
+                                    </light>
+                                </Lighting>
+                            </effect>
+                        </Button>
+                        
+                        <Button cancelButton="true" lineSpacing="1.0" mnemonicParsing="false" onAction="#exitNowAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Exit" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="4">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
+                                    <bumpInput>
+                                        <Shadow />
+                                    </bumpInput>
+                                    <light>
+                                        <Light.Distant color="#f4fc0f" />
+                                    </light>
+                                </Lighting>
+                            </effect>
+                        </Button>
+                    </children>
+                </GridPane>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <AnchorPane>
+            <children>
+                <Label fx:id="correctAnswerLabel" layoutX="359.0" layoutY="4.0" onMouseClicked="#nextQuestionAction" prefHeight="61.0" prefWidth="612.0" style="-fx-alignment: center;" styleClass="round-green" text=" Correct Answer" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="4.0">
+                    <font>
+                        <Font name="System Bold" size="39.0" />
+                    </font>
+                </Label>
+                <Label fx:id="wrongAnswerLabel" layoutX="359.0" layoutY="4.0" onMouseClicked="#nextQuestionAction" prefHeight="62.0" prefWidth="612.0" style="-fx-alignment: center;" styleClass="round-red" text="Wrong Answer" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="4.0">
+                    <font>
+                        <Font name="System Bold" size="39.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="fiftyFiftyImageView" fitHeight="53.0" fitWidth="115.0" layoutX="1044.0" layoutY="7.0" onMouseClicked="#fiftyFiftyAction" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@fifty-fifty.png" />
+                    </image>
+                    <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant color="#f4fc0f" />
-                           </light>
-                        </Lighting>
-                     </effect></Button>
-                  <Button lineSpacing="1.0" mnemonicParsing="false" onAction="#editQuestionAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Edit" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <cursor>
+                    </cursor>
+                </ImageView>
+                <ImageView fx:id="phoneIconImageView" fitHeight="45.0" fitWidth="53.0" layoutX="1159.0" layoutY="9.0" onMouseClicked="#phoneCallAction" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@icon-phone.png" />
+                    </image>
+                    <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant color="#f4fc0f" />
-                           </light>
-                        </Lighting>
-                     </effect></Button>
-                  <Button layoutX="1032.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadQuestionAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Load" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <cursor>
+                    </cursor>
+                </ImageView>
+                <ImageView fx:id="peopleCallImageView" fitHeight="45.0" fitWidth="85.0" layoutX="1212.0" layoutY="9.0" onMouseClicked="#peopleCallAction" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@peopleicon.png" />
+                    </image>
+                    <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant color="#f4fc0f" />
-                           </light>
-                        </Lighting>
-                     </effect></Button>
-              <Button defaultButton="true" lineSpacing="1.0" mnemonicParsing="false" onAction="#goHomScreenAction" onMouseEntered="#mouseEnterAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: yellow;" text="Home" textAlignment="JUSTIFY" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <Lighting diffuseConstant="1.33" specularConstant="0.28" specularExponent="13.02" surfaceScale="2.08">
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant color="#f4fc0f" />
-                           </light>
-                        </Lighting>
-                     </effect></Button>
-               </children>
-            </GridPane>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </HBox>
-      <AnchorPane>
-         <children>
-            <Label fx:id="correctAnswerLabel" layoutX="359.0" layoutY="4.0" onMouseClicked="#nextQuestionAction" prefHeight="61.0" prefWidth="612.0" style="-fx-alignment: center;" styleClass="round-green" text=" Correct Answer" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="4.0">
-               <font>
-                  <Font name="System Bold" size="39.0" />
-               </font>
-            </Label>
-            <Label fx:id="wrongAnswerLabel" layoutX="359.0" layoutY="4.0" onMouseClicked="#nextQuestionAction" prefHeight="62.0" prefWidth="612.0" style="-fx-alignment: center;" styleClass="round-red" text="Wrong Answer" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="4.0">
-               <font>
-                  <Font name="System Bold" size="39.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="fiftyFiftyImageView" fitHeight="53.0" fitWidth="115.0" layoutX="1044.0" layoutY="7.0" onMouseClicked="#fiftyFiftyAction" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@fifty-fifty.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="phoneIconImageView" fitHeight="45.0" fitWidth="53.0" layoutX="1159.0" layoutY="9.0" onMouseClicked="#phoneCallAction" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icon-phone.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="peopleCallImageView" fitHeight="45.0" fitWidth="85.0" layoutX="1212.0" layoutY="9.0" onMouseClicked="#peopleCallAction" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@peopleicon.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <Region prefHeight="32.0" prefWidth="1295.0" stylesheets="@quizApplicationCommonDesign.css" />
-      <HBox fx:id="questionSerialHBox" prefHeight="106.0" prefWidth="1290.0" />
-      <BorderPane prefHeight="412.0" prefWidth="1290.0">
-         <center>
-            <GridPane fx:id="optionHolderGridPane" prefHeight="263.0" prefWidth="1090.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="optionA_btn" mnemonicParsing="false" onAction="#opA_action" onMouseEntered="#mouseEnterAction" prefHeight="62.0" prefWidth="525.0" style="-fx-alignment: left;" styleClass="shiny-orange" text="OptionA" textFill="#398624" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" top="80.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Vrinda" size="30.0" />
-                     </font>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </Button>
-                  <Button fx:id="optionB_btn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#opB_Action" onMouseEntered="#mouseEnterAction" prefHeight="62.0" prefWidth="525.0" style="-fx-alignment: left;" styleClass="shiny-orange" stylesheets="@quizApplicationCommonDesign.css" text="OptionB" textFill="#398624" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" top="80.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Vrinda" size="30.0" />
-                     </font>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <effect>
-                        <Glow />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="optionC_btn" mnemonicParsing="false" onAction="#opC_Action" onMouseEntered="#mouseEnterAction" prefHeight="62.0" prefWidth="525.0" style="-fx-alignment: left;" styleClass="shiny-orange" text="OptionC" textFill="#398624" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                     <GridPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Vrinda" size="30.0" />
-                     </font>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </Button>
-                  <Button fx:id="optionD_btn" mnemonicParsing="false" onAction="#opD_Action" onMouseEntered="#mouseEnterAction" prefHeight="62.0" prefWidth="525.0" style="-fx-alignment: left;" styleClass="shiny-orange" text="OptionD" textFill="#398624" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                     <GridPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Vrinda" size="30.0" />
-                     </font>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets top="40.0" />
-               </padding>
-            </GridPane>
-         </center>
-         <bottom>
-            <HBox prefHeight="32.0" prefWidth="1290.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label prefHeight="37.0" prefWidth="545.0" textFill="#20752b">
-                     <font>
+                    </cursor>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <Region prefHeight="32.0" prefWidth="1295.0" stylesheets="@quizApplicationCommonDesign.css" />
+        <HBox fx:id="questionSerialHBox" prefHeight="106.0" prefWidth="1290.0" />
+        <BorderPane prefHeight="412.0" prefWidth="1290.0">
+            <center>
+                <GridPane fx:id="optionHolderGridPane" prefHeight="263.0" prefWidth="1090.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="optionA_btn" mnemonicParsing="false" onAction="#opA_action" onMouseEntered="#mouseEnterAction" prefHeight="62.0" prefWidth="525.0" style="-fx-alignment: left;" styleClass="shiny-orange" text="OptionA" textFill="#398624" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                            <GridPane.margin>
+                                <Insets left="10.0" right="10.0" top="80.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Vrinda" size="30.0" />
+                            </font>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Glow />
+                            </effect>
+                        </Button>
+                        <Button fx:id="optionB_btn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#opB_Action" onMouseEntered="#mouseEnterAction" prefHeight="62.0" prefWidth="525.0" style="-fx-alignment: left;" styleClass="shiny-orange" stylesheets="@quizApplicationCommonDesign.css" text="OptionB" textFill="#398624" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                            <GridPane.margin>
+                                <Insets left="10.0" right="10.0" top="80.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Vrinda" size="30.0" />
+                            </font>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <effect>
+                                <Glow />
+                            </effect>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <Button fx:id="optionC_btn" mnemonicParsing="false" onAction="#opC_Action" onMouseEntered="#mouseEnterAction" prefHeight="62.0" prefWidth="525.0" style="-fx-alignment: left;" styleClass="shiny-orange" text="OptionC" textFill="#398624" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                            <GridPane.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Vrinda" size="30.0" />
+                            </font>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Glow />
+                            </effect>
+                        </Button>
+                        <Button fx:id="optionD_btn" mnemonicParsing="false" onAction="#opD_Action" onMouseEntered="#mouseEnterAction" prefHeight="62.0" prefWidth="525.0" style="-fx-alignment: left;" styleClass="shiny-orange" text="OptionD" textFill="#398624" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                            <GridPane.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Vrinda" size="30.0" />
+                            </font>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Glow />
+                            </effect>
+                        </Button>
+                        <Button id="counter" fx:id="counter_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="12.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="80.0" style="-fx-alignment: left;" styleClass="shiny-blue" text="30" textFill="#f80b0b" textOverrun="CLIP" GridPane.columnIndex="1">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <Glow level="0.79" />
+                            </effect>
+                            <font>
+                                <Font name="Vrinda" size="30.0" />
+                            </font>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <GridPane.margin>
+                                <Insets left="-50.0" top="-100.0" />
+                            </GridPane.margin>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets top="40.0" />
+                    </padding>
+                </GridPane>
+            </center>
+            <bottom>
+                <HBox prefHeight="32.0" prefWidth="1290.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label prefHeight="37.0" prefWidth="545.0" textFill="#20752b">
+                            <font>
+                                <Font name="System Bold Italic" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </bottom>
+            <right>
+                <VBox prefHeight="294.0" prefWidth="138.0" BorderPane.alignment="CENTER" />
+            </right>
+            <top>
+                <VBox prefHeight="85.0" prefWidth="1290.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox prefHeight="65.0" prefWidth="1290.0">
+                            <children>
+                                <Region prefHeight="37.0" prefWidth="43.0" />
+                                <Region prefHeight="40.0" prefWidth="43.0" />
+                                <AnchorPane>
+                                    <children>
+                                        <Label fx:id="questionLabel" layoutX="65.0" onMouseClicked="#nextQuestionAction" prefHeight="78.0" prefWidth="1216.0" styleClass="shiny-orange" text="This is test question to go on...." textFill="#282c2a" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <font>
+                                                <Font name="Vrinda Bold" size="31.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="10.0" />
+                                            </padding>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+                        <Region prefHeight="18.0" prefWidth="1290.0" />
+                    </children>
+                </VBox>
+            </top>
+            <left>
+                <HBox prefHeight="294.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Region prefHeight="294.0" prefWidth="152.0" />
+                    </children>
+                </HBox>
+            </left>
+        </BorderPane>
+        <Region prefHeight="13.0" prefWidth="1290.0" VBox.vgrow="ALWAYS" />
+        <HBox prefHeight="32.0" prefWidth="1290.0">
+            <children>
+                <Region prefHeight="32.0" prefWidth="618.0" />
+                <Label prefHeight="30.0" prefWidth="548.0" text="Copyright and owned by Daffodils Kindergarden Schools, Naogaon Sadar, Naogaon, Bangladesh" textFill="#20752b">
+                    <font>
                         <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-         </bottom>
-         <right>
-            <VBox prefHeight="294.0" prefWidth="138.0" BorderPane.alignment="CENTER" />
-         </right>
-         <top>
-            <VBox prefHeight="85.0" prefWidth="1290.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox prefHeight="65.0" prefWidth="1290.0">
-                     <children>
-                        <Region prefHeight="37.0" prefWidth="43.0" />
-                        <Region prefHeight="40.0" prefWidth="43.0" />
-                        <AnchorPane>
-                           <children>
-                              <Label fx:id="questionLabel" layoutX="65.0" onMouseClicked="#nextQuestionAction" prefHeight="78.0" prefWidth="1216.0" styleClass="shiny-orange" text="This is test question to go on...." textFill="#282c2a" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font name="Vrinda Bold" size="31.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-                  <Region prefHeight="18.0" prefWidth="1290.0" />
-               </children>
-            </VBox>
-         </top>
-         <left>
-            <HBox prefHeight="294.0" prefWidth="150.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Region prefHeight="294.0" prefWidth="152.0" />
-               </children>
-            </HBox>
-         </left>
-      </BorderPane>
-      <Region prefHeight="13.0" prefWidth="1290.0" VBox.vgrow="ALWAYS" />
-      <HBox prefHeight="32.0" prefWidth="1290.0">
-         <children>
-            <Region prefHeight="32.0" prefWidth="618.0" />
-            <Label prefHeight="30.0" prefWidth="548.0" text="Copyright and owned by Daffodils Kindergarden Schools, Naogaon Sadar, Naogaon, Bangladesh" textFill="#20752b">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Label>
-            <VBox prefHeight="200.0" prefWidth="100.0" />
-         </children>
-      </HBox>
-   </children>
+                    </font>
+                </Label>
+                <VBox prefHeight="200.0" prefWidth="100.0" />
+            </children>
+        </HBox>
+    </children>
 </VBox>

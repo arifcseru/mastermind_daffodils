@@ -36,8 +36,7 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
- */ 
-
+ */
 package app.quiz.presentationtier;
 
 import app.quiz.businesstier.QuestionTO;
@@ -58,11 +57,11 @@ import javafx.util.Duration;
  *
  * @author Angie
  */
-public class ScreensController  extends StackPane {
+public class ScreensController extends StackPane {
     //Holds the screens to be displayed
 
     private HashMap<String, Node> screens = new HashMap<>();
-    
+
     public ScreensController() {
         super();
     }
@@ -85,7 +84,7 @@ public class ScreensController  extends StackPane {
             Parent loadScreen = (Parent) myLoader.load();
             ControlledScreen myScreenControler = ((ControlledScreen) myLoader.getController());
             myScreenControler.setScreenParent(this);
-            
+
             //System.out.println("Added: "+ name);
             addScreen(name, loadScreen);
             return true;
@@ -100,7 +99,7 @@ public class ScreensController  extends StackPane {
     //one screen the new screen is been added second, and then the current screen is removed.
     // If there isn't any screen being displayed, the new screen is just added to the root.
     public boolean setScreen(final String name) {
-        
+
         loadTheScreen(name);
         if (screens.get(name) != null) {   //screen loaded
             final DoubleProperty opacity = opacityProperty();
@@ -109,16 +108,16 @@ public class ScreensController  extends StackPane {
                 Timeline fade = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
                         new KeyFrame(new Duration(500), new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent t) {
-                        getChildren().remove(0);                    //remove the displayed screen
-                        getChildren().add(0, screens.get(name));     //add the screen
-                        Timeline fadeIn = new Timeline(
-                                new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
-                                new KeyFrame(new Duration(800), new KeyValue(opacity, 1.0)));
-                        fadeIn.play();
-                    }
-                }, new KeyValue(opacity, 0.0)));
+                            @Override
+                            public void handle(ActionEvent t) {
+                                getChildren().remove(0);                    //remove the displayed screen
+                                getChildren().add(0, screens.get(name));     //add the screen
+                                Timeline fadeIn = new Timeline(
+                                        new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
+                                        new KeyFrame(new Duration(800), new KeyValue(opacity, 1.0)));
+                                fadeIn.play();
+                            }
+                        }, new KeyValue(opacity, 0.0)));
                 fade.play();
 
             } else {
@@ -151,29 +150,34 @@ public class ScreensController  extends StackPane {
          return false;
          }*/
     }
-    private void loadTheScreen(String name){
-         if (name.equalsIgnoreCase("QuizScreen")) {
-             //new QuizScreenController().nextQuestionTypeAction();
-             ScreensFramework.loadQuizScreen(this);
-        }else if (name.equalsIgnoreCase("HomeScreen")) {
-             //new QuizScreenController().nextQuestionTypeAction();
-             ScreensFramework.loadHomeScreen(this);
-        }else if(name.equalsIgnoreCase("AudioContainer")){
+
+    private void loadTheScreen(String name) {
+        if (name.equalsIgnoreCase("QuizScreen")) {
+            //new QuizScreenController().nextQuestionTypeAction();
+            ScreensFramework.loadQuizScreen(this);
+        } else if (name.equalsIgnoreCase("HomeScreen")) {
+            //new QuizScreenController().nextQuestionTypeAction();
+            ScreensFramework.loadHomeScreen(this);
+        } else if (name.equalsIgnoreCase("SettingsScreen")) {
+            //new QuizScreenController().nextQuestionTypeAction();
+            // ScreensFramework.loadSettingsScreen(this);
+            ScreensFramework.loadHomeScreen(this);
+        } else if (name.equalsIgnoreCase("AudioContainer")) {
             ScreensFramework.loadAudioContainerScreen(this);
-        }else if(name.equalsIgnoreCase("ImageContainer")){
+        } else if (name.equalsIgnoreCase("ImageContainer")) {
             ScreensFramework.loadImageContainerScreen(this);
-        }else if(name.equalsIgnoreCase("VideoContainer")){
+        } else if (name.equalsIgnoreCase("VideoContainer")) {
             ScreensFramework.loadVideoContainerScreen(this);
-        }else if(name.equalsIgnoreCase("CorrectAnswer")){
+        } else if (name.equalsIgnoreCase("CorrectAnswer")) {
             ScreensFramework.loadCorrectAnswer(this);
-        }else if(name.equalsIgnoreCase("WrongAnswer")){
+        } else if (name.equalsIgnoreCase("WrongAnswer")) {
             ScreensFramework.loadWrongAnswer(this);
-        }else if(name.equalsIgnoreCase("ResultScreen")){
+        } else if (name.equalsIgnoreCase("ResultScreen")) {
             ScreensFramework.loadResultScreen(this);
         }
-       
+
     }
-    
+
     //This method will remove the screen with the given name from the collection of screens
     public boolean unloadScreen(String name) {
         if (screens.remove(name) == null) {
@@ -184,4 +188,3 @@ public class ScreensController  extends StackPane {
         }
     }
 }
-

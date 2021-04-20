@@ -73,6 +73,8 @@ public class ScreensFramework extends Application {
 
     public static String homeScreen = "HomeScreen";
     public static String homeScreenFile = "HomeScreen.fxml";
+    public static String settingsScreen = "SettingsScreen";
+    public static String settingsScreenFile = "SettingsScreen.fxml";
     public static String quizScreen = "QuizScreen";
     public static String quizScreenFile = "QuizScreen.fxml";
     public static String newQuestionsScreen = "NewQuestionsScreen";
@@ -156,6 +158,9 @@ public class ScreensFramework extends Application {
 
     public static void loadHomeScreen(ScreensController mainContainer) {
         mainContainer.loadScreen(ScreensFramework.homeScreen, ScreensFramework.homeScreenFile);
+    }
+    public static void loadSettingsScreen(ScreensController mainContainer) {
+        mainContainer.loadScreen(ScreensFramework.settingsScreen, ScreensFramework.settingsScreenFile);
     }
 
     public static void loadQuizScreen(ScreensController mainContainer) {
