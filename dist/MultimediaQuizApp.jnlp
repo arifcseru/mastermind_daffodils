@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="MultimediaQuizApp.jar" size="10376335" download="eager" />
+    <jar href="MultimediaQuizApp.jar" size="10380674" download="eager" />
     <jar href="lib\commons-io-2.4.jar" size="185140" download="eager" />
     <jar href="lib\sqlite-jdbc-3.8.11.1.jar" size="5191028" download="eager" />
   </resources>
